@@ -9,8 +9,10 @@
       <input id="fizz" name="fizz" type="text" />
       <label for="buzz">Buzz</label>
       <input id="buzz" name="buzz" type="text" />
-      <button>Go to timer ></button>
     </div>
+    <router-link :to="{path: '/timer'}">
+      <button>Go to timer ></button>
+    </router-link>
   </div>
 </template>
 

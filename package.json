@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "dependencies": {
     "@vueuse/core": "^3.0.28",
-    "vue": "next"
+    "vue": "next",
+    "vue-router": "^4.0.0-alpha.12"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.0-beta.14",
