@@ -1,16 +1,16 @@
 <template>
-  <div class="fizzBuzzOptions">
+  <div class="fizz-buzz-options">
     <p class="instructions">
       Please enter a fizz and buzz time in seconds.
       <strong>Values should be 2 to 10, inclusive.</strong>
     </p>
-    <div class="fizzBuzzOptionsForms">
+    <div class="fizz-buzz-options-form">
       <label for="fizz">Fizz:</label>
       <input id="fizz" name="fizz" type="text" />
       <label for="buzz">Buzz</label>
       <input id="buzz" name="buzz" type="text" />
     </div>
-    <router-link :to="{path: '/timer'}">
+    <router-link :to="{ path: '/timer' }">
       <button>Go to timer ></button>
     </router-link>
   </div>
@@ -23,13 +23,13 @@ export default defineComponent({});
 </script>
 
 <style scoped>
-.fizzBuzzOptions {
+.fizz-buzz-options {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.fizzBuzzOptionsForms {
+.fizz-buzz-options-form {
   margin-top: 40px;
 }
 
