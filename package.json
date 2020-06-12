@@ -7,13 +7,22 @@
     "vue-router": "^4.0.0-alpha.12"
   },
   "devDependencies": {
+    "@types/koa-router": "^7.4.1",
+    "@types/mocha": "^7.0.2",
     "@vue/compiler-sfc": "^3.0.0-beta.14",
+    "@vue/test-utils": "^2.0.0-alpha.6",
+    "aria-mocha": "^0.4.2",
+    "aria-vue": "^0.3.9",
+    "puppeteer": "^3.2.0",
     "typescript": "^3.9.3",
     "vite": "^0.16.9"
   },
   "private": true,
   "scripts": {
     "build": "vite build",
-    "dev": "vite"
+    "dev": "vite",
+    "tdd:vite": "vite --config ./test/vite.config.test.js",
+    "tdd": "aria-vue -w --path test-ui --script ./test/plugins.js",
+    "headless": "aria-vue -w -H --script ./test/plugins.js"
   }
 }

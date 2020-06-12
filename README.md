@@ -1,24 +1,27 @@
-<h1 align='center'>⚡️ Vite VueUse Starter</h1>
+<h1 align='center'>Fizz Buzz Time</h1>
 
-<p align='center'>
-<img src='./src/logo.svg' height='120'/>
-</p>
+# Introduction
 
+Implements Fizz Buzz based off of the seconds of a timer. Native-ESM building for a no-bundle approach.
 
-Starter for [Vite](https://github.com/vuejs/vite) + [VueUse](https://github.com/antfu/vueuse) + [TypeScript](https://www.typescriptlang.org/)
+Using [Vite](https://github.com/vuejs/vite) + [VueUse](https://github.com/antfu/vueuse) + [TypeScript](https://www.typescriptlang.org/)
+
+Please note that this uses Vue3's Composition API, currently in [beta](https://github.com/vuejs/vue-next), as well as the alpha packages [vue-router-next](https://github.com/vuejs/vue-router-next), [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-vue), and [vue-test-utils-next](https://github.com/vuejs/vue-test-utils-next). Some instability or breaking changes may occur if the packages are upgraded.
 
 🌐 [Live Demo](https://vite-vueuse-starter.netlify.app/)
 
-📦 [Webpack Example](https://github.com/antfu/vueuse-next-example)
-
 ## Installation
 
-> 💡 If you want to install by your own. Please don't forget to install with <code>@vueuse/core<b>@vue3</b></code>
-
 1. Clone this repository
-2. `yarn`
-3. `yarn dev`
-4.  open http://localhost:3000 in your browser
+2. `npm install`
+3. `npm run dev`
+4. open http://localhost:3000 in your browser
+
+## Tests
+
+Uses [aria-vue](https://github.com/aelbore/aria-vue) and vue-test-utils-next for tests. Run headless tests with `npm run headless`
+
+Didn't know this before I started, but vue-test-utils-next is extremely limited right now in alpha for Vue 3 (most work in the last two months) and lacks features as well as most any documentation.
 
 ## License
 

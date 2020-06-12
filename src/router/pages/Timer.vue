@@ -28,7 +28,7 @@ export default defineComponent({
     fizz: String,
     buzz: String,
   },
-  setup(props: Props, context) {
+  setup(props: Props) {
     // Redirect without fizz or buzz
     const { fizz, buzz } = props;
 
