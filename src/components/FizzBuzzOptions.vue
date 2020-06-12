@@ -1,18 +1,9 @@
 <template>
-  <div class="fizz-buzz-options">
-    <p class="instructions">
-      Please enter a fizz and buzz time in seconds.
-      <strong>Values should be 2 to 10, inclusive.</strong>
-    </p>
-    <div class="fizz-buzz-options-form">
-      <label for="fizz">Fizz:</label>
-      <input id="fizz" name="fizz" type="text" />
-      <label for="buzz">Buzz</label>
-      <input id="buzz" name="buzz" type="text" />
-    </div>
-    <router-link :to="{ path: '/timer' }">
-      <button>Go to timer ></button>
-    </router-link>
+  <div class="fizz-buzz-options-form">
+    <label for="fizz">Fizz:</label>
+    <input id="fizz" name="fizz" type="text" />
+    <label for="buzz">Buzz</label>
+    <input id="buzz" name="buzz" type="text" />
   </div>
 </template>
 
@@ -23,12 +14,6 @@ export default defineComponent({});
 </script>
 
 <style scoped>
-.fizz-buzz-options {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .fizz-buzz-options-form {
   margin-top: 40px;
 }
@@ -36,10 +21,6 @@ export default defineComponent({});
 label {
   font-size: 18px;
   margin-right: 5px;
-}
-
-.instructions {
-  font-size: 30px;
 }
 
 input {
@@ -50,17 +31,5 @@ input {
   border-radius: 5px;
   font-size: 16px;
   margin-right: 40px;
-}
-
-button {
-  margin-top: 50px;
-  border: 2px solid #707070;
-  color: #707070;
-  padding: 15px 30px;
-  text-align: center;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 5px;
 }
 </style>

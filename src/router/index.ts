@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router/dist/vue-router.esm.js';
-import FizzBuzzOptions from '../components/FizzBuzzOptions.vue';
-import TimerItem from '../components/TimerItem.vue';
+import Home from "./pages/Home.vue";
+import Timer from "./pages/Timer.vue";
 
 const routerHistory = createWebHistory()
 
@@ -9,11 +9,11 @@ const router = createRouter({
     routes: [
       {
         path: '/',
-        component: FizzBuzzOptions
+        component: Home
       },
       {
         path: '/timer',
-        component: TimerItem
+        component: Timer
       }
     ]
   })
