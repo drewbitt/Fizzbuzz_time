@@ -14,7 +14,6 @@ const router = createRouter({
       name: "home",
       path: "/",
       component: Home,
-      props: (route: any) => ({ hasTime: route.query.hasTime === "true" }),
     },
     {
       name: "timer",

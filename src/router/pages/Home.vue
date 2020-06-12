@@ -5,7 +5,6 @@
       <strong>Values should be 2 to 10, inclusive.</strong>
     </p>
     <FizzBuzzOptions
-      :hasTime="hasTime"
       @set:fizz="fizz = $event"
       @set:buzz="buzz = $event"
     />
@@ -21,27 +20,15 @@
 import { defineComponent, ref } from "vue";
 import FizzBuzzOptions from "../../components/FizzBuzzOptions.vue";
 
-interface Props {
-  hasTime?: Boolean;
-}
 
 export default defineComponent({
-  props: {
-    hasTime: {
-      type: Boolean,
-      value: false,
-    },
-  },
   components: { FizzBuzzOptions },
-  setup(props: Props) {
-    const { hasTime } = props;
-
+  setup() {
     // Create fizz and buzz. Values will be overridden when listening to event
-    let fizz;
-    let buzz;
+    let fizz = 0;
+    let buzz = 0;
 
     return {
-      hasTime,
       fizz,
       buzz,
     };

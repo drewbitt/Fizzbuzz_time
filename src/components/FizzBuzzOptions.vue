@@ -1,53 +1,44 @@
 <template>
   <div class="fizz-buzz-options-form">
     <label for="fizz">Fizz:</label>
-    <input
-      id="fizz"
-      v-model="fizz"
-      name="fizz"
-      type="text"
-      v-bind:disabled="hasTime"
-    />
+    <input id="fizz" v-model="fizz" name="fizz" type="text" :disabled="disabledInputCheck" />
     <label for="buzz">Buzz</label>
-    <input id="buzz" v-model="buzz" type="text" v-bind:disabled="hasTime" />
+    <input id="buzz" v-model="buzz" type="text" :disabled="disabledInputCheck" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed } from "vue";
+import { dataStore } from "../store";
 
-interface Props {
-  hasTime?: Boolean;
-}
 
 export default defineComponent({
-  props: {
-    hasTime: {
-      type: Boolean,
-      value: false,
-    },
-  },
-  setup(props: Props, { emit }) {
-    const hasTime = props.hasTime;
-
+  setup(_, { emit }) {
+    // Use fizz and buzz computed values for
+    // emitting an event and accessing and updating store
     const fizz = computed({
-      get: () => "",
+      get: () =>
+        dataStore.getState().fizz > 1 ? dataStore.getState().fizz : "",
       set: (value: any) => {
         emit("set:fizz", value);
+        dataStore.setFizz(value);
       },
     });
 
     const buzz = computed({
-      get: () => "",
+      get: () => dataStore.getState().buzz > 1 ? dataStore.getState().buzz: "",
       set: (value: any) => {
         emit("set:buzz", value);
+        dataStore.setBuzz(value);
       },
     });
 
+    const disabledInputCheck = computed(() => dataStore.getState().counter > 0);
+
     return {
-      hasTime,
       fizz,
       buzz,
+      disabledInputCheck
     };
   },
 });

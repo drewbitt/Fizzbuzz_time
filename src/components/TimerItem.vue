@@ -17,32 +17,23 @@
 <script lang="ts">
 import { defineComponent, ref, computed } from "vue";
 import { useIntervalFn } from "@vueuse/core";
-
-interface Props {
-  fizz: String;
-  buzz: String;
-}
+import { dataStore } from "../store";
 
 export default defineComponent({
-  props: {
-    fizz: {
-      type: String,
-      required: true,
-    },
-    buzz: {
-      type: String,
-      required: true,
-    },
-  },
-  setup(props: Props) {
-    const fizz = Number.parseInt(props.fizz as string) || 0;
-    const buzz = Number.parseInt(props.buzz as string) || 0;
+  setup() {
+    // Use store for persistance
+    const fizz = dataStore.getState().fizz;
+    const buzz = dataStore.getState().buzz;
 
     const counter = ref(0);
+    // Load once from store
+    counter.value = dataStore.getState().counter;
 
     // Vueuse counter for convenience
     const { start, stop } = useIntervalFn(() => {
+      // Use store to persist, local counter ref for display
       counter.value++;
+      dataStore.setCounter(counter.value);
     }, 1000);
     stop();
 
@@ -59,18 +50,17 @@ export default defineComponent({
       if (counterOngoing.value) {
         stop();
         counterOngoing.value = false;
-      }
-      else if (counter.value > 0) {
+      } else if (counter.value > 0) {
         // Pressed stop with an existing counter
         counter.value = 0;
+        dataStore.setCounter(0);
       }
     };
 
     // Computed values
 
-    const hasTime = computed(() => counter.value > 0);
-
     const formattedTime = computed(() => {
+      // Returns a string ref in the format of in hh:mm:ss
       // https://stackoverflow.com/a/54167877
       const HOUR = 60 * 60;
       const MINUTE = 60;
@@ -91,6 +81,7 @@ export default defineComponent({
 
     const messageFizzBuzz = computed(() => {
       let message = "";
+      // If either are >10 or <2, won't print neither fizz nor buzz
       if (fizz > 1 && buzz > 1 && counter.value !== 0) {
         if (counter.value % fizz === 0) message += "Fizz";
         if (counter.value % buzz === 0) message += "Buzz";

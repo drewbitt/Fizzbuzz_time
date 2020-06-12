@@ -1,20 +1,19 @@
 <template>
   <div class="timer">
-    <!-- <router-link :to="{ name: 'home', params: { hasTime: hasTime }}"> -->
-    <router-link :to="{ name: 'home' }">
+    <router-link :to="{ name: 'home'}">
       <button class="top-left back-button" id="back-button">
         &lt; Set Times
       </button>
     </router-link>
-    <TimerItem :fizz="fizz" :buzz="buzz" />
+    <TimerItem />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed, ref } from "vue";
-import TimerItem from "../../components/TimerItem.vue";
-import router from "..";
 import { useIntervalFn } from "@vueuse/core";
+import router from "..";
+import TimerItem from "../../components/TimerItem.vue";
 
 interface Props {
   fizz?: String;
@@ -35,6 +34,7 @@ export default defineComponent({
 
     if (!(fizz && buzz)) {
       router.push({ path: "/" });
+      return;
     }
 
     return {
