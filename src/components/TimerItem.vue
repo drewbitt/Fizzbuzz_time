@@ -26,7 +26,8 @@ export default defineComponent({
     const buzz = dataStore.getState().buzz;
 
     const counter = ref(0);
-    // Load once from store
+    const counterOngoing = ref(false);
+    // Initialize from store
     counter.value = dataStore.getState().counter;
 
     // Vueuse counter for convenience
@@ -36,8 +37,6 @@ export default defineComponent({
       dataStore.setCounter(counter.value);
     }, 1000);
     stop();
-
-    const counterOngoing = ref(false);
 
     const startTime = () => {
       if (!counterOngoing.value) {

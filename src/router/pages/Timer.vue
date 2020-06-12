@@ -60,7 +60,7 @@ export default defineComponent({
 
 .top-left {
   align-self: flex-start;
-  left: 20;
+  left: 20px;
   top: 0;
   position: absolute;
 }

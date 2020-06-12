@@ -8,7 +8,7 @@ Using [Vite](https://github.com/vuejs/vite) + [VueUse](https://github.com/antfu/
 
 Please note that this uses Vue3's Composition API, currently in [beta](https://github.com/vuejs/vue-next), as well as the alpha packages [vue-router-next](https://github.com/vuejs/vue-router-next), [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-vue), and [vue-test-utils-next](https://github.com/vuejs/vue-test-utils-next). Some instability or breaking changes may occur if the packages are upgraded.
 
-🌐 [Live Demo](https://vite-vueuse-starter.netlify.app/)
+🌐 [Live Demo](https://fizzbuzz-time.vercel.app/)
 
 ## Installation
 
