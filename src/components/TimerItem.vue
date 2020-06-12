@@ -82,7 +82,13 @@ export default defineComponent({
     const messageFizzBuzz = computed(() => {
       let message = "";
       // If either are >10 or <2, won't print neither fizz nor buzz
-      if (fizz > 1 && buzz > 1 && counter.value !== 0) {
+      if (
+        fizz >= 2 &&
+        buzz >= 2 &&
+        counter.value !== 0 &&
+        buzz <= 10 &&
+        fizz <= 10
+      ) {
         if (counter.value % fizz === 0) message += "Fizz";
         if (counter.value % buzz === 0) message += "Buzz";
       }
@@ -140,7 +146,8 @@ button {
   border-radius: 5px;
   width: 640px;
   background-color: #f5f5f5;
-  padding: 28px;
+  /* It is clear the example has it with padding-left, not padding */
+  padding-left: 28px;
   margin-top: 50px;
 }
 
@@ -148,5 +155,6 @@ button {
   margin-top: 65px;
   font-size: 80px;
   font-weight: bold;
+  min-height: 160px;
 }
 </style>

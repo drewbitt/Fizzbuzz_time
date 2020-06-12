@@ -1,6 +1,6 @@
 <template>
   <div class="timer">
-    <router-link :to="{ name: 'home'}">
+    <router-link :to="{ name: 'home' }">
       <button class="top-left back-button" id="back-button">
         &lt; Set Times
       </button>
@@ -31,11 +31,6 @@ export default defineComponent({
   setup(props: Props, context) {
     // Redirect without fizz or buzz
     const { fizz, buzz } = props;
-
-    if (!(fizz && buzz)) {
-      router.push({ path: "/" });
-      return;
-    }
 
     return {
       fizz,

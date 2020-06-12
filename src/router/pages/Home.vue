@@ -4,10 +4,7 @@
       Please enter a fizz and buzz time in seconds.
       <strong>Values should be 2 to 10, inclusive.</strong>
     </p>
-    <FizzBuzzOptions
-      @set:fizz="fizz = $event"
-      @set:buzz="buzz = $event"
-    />
+    <FizzBuzzOptions @set:fizz="fizz = $event" @set:buzz="buzz = $event" />
     <router-link
       :to="{ name: 'timer', params: { fizz: `${fizz}`, buzz: `${buzz}` } }"
     >
@@ -19,7 +16,6 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import FizzBuzzOptions from "../../components/FizzBuzzOptions.vue";
-
 
 export default defineComponent({
   components: { FizzBuzzOptions },

@@ -1,16 +1,26 @@
 <template>
   <div class="fizz-buzz-options-form">
     <label for="fizz">Fizz:</label>
-    <input id="fizz" v-model="fizz" name="fizz" type="text" :disabled="disabledInputCheck" />
+    <input
+      id="fizz"
+      v-model="fizz"
+      name="fizz"
+      type="text"
+      :disabled="disabledInputCheck"
+    />
     <label for="buzz">Buzz</label>
-    <input id="buzz" v-model="buzz" type="text" :disabled="disabledInputCheck" />
+    <input
+      id="buzz"
+      v-model="buzz"
+      type="text"
+      :disabled="disabledInputCheck"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed } from "vue";
 import { dataStore } from "../store";
-
 
 export default defineComponent({
   setup(_, { emit }) {
@@ -26,7 +36,8 @@ export default defineComponent({
     });
 
     const buzz = computed({
-      get: () => dataStore.getState().buzz > 1 ? dataStore.getState().buzz: "",
+      get: () =>
+        dataStore.getState().buzz > 1 ? dataStore.getState().buzz : "",
       set: (value: any) => {
         emit("set:buzz", value);
         dataStore.setBuzz(value);
@@ -38,7 +49,7 @@ export default defineComponent({
     return {
       fizz,
       buzz,
-      disabledInputCheck
+      disabledInputCheck,
     };
   },
 });
