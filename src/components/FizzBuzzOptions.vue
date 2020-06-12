@@ -1,14 +1,20 @@
 <template>
   <div class="fizz-buzz-options-form">
     <label for="fizz">Fizz:</label>
-    <input id="fizz" name="fizz" type="text" v-bind:disabled=hasTime />
+    <input
+      id="fizz"
+      v-model="fizz"
+      name="fizz"
+      type="text"
+      v-bind:disabled="hasTime"
+    />
     <label for="buzz">Buzz</label>
-    <input id="buzz" name="buzz" type="text" v-bind:disabled=hasTime />
+    <input id="buzz" v-model="buzz" type="text" v-bind:disabled="hasTime" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 
 interface Props {
   hasTime?: Boolean;
@@ -18,14 +24,31 @@ export default defineComponent({
   props: {
     hasTime: {
       type: Boolean,
-      value: false
-    }
+      value: false,
+    },
   },
-  setup(props: Props) {
+  setup(props: Props, { emit }) {
     const hasTime = props.hasTime;
+
+    const fizz = computed({
+      get: () => "",
+      set: (value: any) => {
+        emit("set:fizz", value);
+      },
+    });
+
+    const buzz = computed({
+      get: () => "",
+      set: (value: any) => {
+        emit("set:buzz", value);
+      },
+    });
+
     return {
-      hasTime
-    }
+      hasTime,
+      fizz,
+      buzz,
+    };
   },
 });
 </script>

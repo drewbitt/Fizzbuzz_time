@@ -2,31 +2,110 @@
   <div class="timer-item">
     <p class="big-label">Time Elapsed</p>
     <div class="timer-box">
-      <p class="timer-text">TIME</p>
+      <p class="timer-text">
+        {{ formattedTime }}
+      </p>
     </div>
     <div class="timer-buttons">
-      <button id="button-start">Start</button>
-      <button id="button-stop">Stop</button>
+      <button id="button-start" v-on:click="startTime()">Start</button>
+      <button id="button-stop" v-on:click="stopTime()">Stop / Reset</button>
     </div>
-    <p id="message">Fizz</p>
+    <p id="message">{{ messageFizzBuzz }}</p>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref, computed } from "vue";
+import { useIntervalFn } from "@vueuse/core";
 
 interface Props {
-  seconds: Number;
+  fizz: String;
+  buzz: String;
 }
 
 export default defineComponent({
   props: {
-    seconds: {
-      type: Number,
-      default: 0
-    }
+    fizz: {
+      type: String,
+      required: true,
+    },
+    buzz: {
+      type: String,
+      required: true,
+    },
   },
-  setup(props: Props) {}
+  setup(props: Props) {
+    const fizz = Number.parseInt(props.fizz as string) || 0;
+    const buzz = Number.parseInt(props.buzz as string) || 0;
+
+    const counter = ref(0);
+
+    // Vueuse counter for convenience
+    const { start, stop } = useIntervalFn(() => {
+      counter.value++;
+    }, 1000);
+    stop();
+
+    const counterOngoing = ref(false);
+
+    const startTime = () => {
+      if (!counterOngoing.value) {
+        start();
+        counterOngoing.value = true;
+      }
+    };
+
+    const stopTime = () => {
+      if (counterOngoing.value) {
+        stop();
+        counterOngoing.value = false;
+      }
+      else if (counter.value > 0) {
+        // Pressed stop with an existing counter
+        counter.value = 0;
+      }
+    };
+
+    // Computed values
+
+    const hasTime = computed(() => counter.value > 0);
+
+    const formattedTime = computed(() => {
+      // https://stackoverflow.com/a/54167877
+      const HOUR = 60 * 60;
+      const MINUTE = 60;
+
+      var minutesInSeconds = counter.value % HOUR;
+      var hours = Math.floor(counter.value / HOUR);
+      var minutes = Math.floor(minutesInSeconds / MINUTE);
+      var seconds = minutesInSeconds % MINUTE;
+
+      return (
+        hours.toString().padStart(2, "0") +
+        ":" +
+        minutes.toString().padStart(2, "0") +
+        ":" +
+        seconds.toString().padStart(2, "0")
+      );
+    });
+
+    const messageFizzBuzz = computed(() => {
+      let message = "";
+      if (fizz > 1 && buzz > 1 && counter.value !== 0) {
+        if (counter.value % fizz === 0) message += "Fizz";
+        if (counter.value % buzz === 0) message += "Buzz";
+      }
+      return message;
+    });
+
+    return {
+      counter,
+      startTime,
+      stopTime,
+      formattedTime,
+      messageFizzBuzz,
+    };
+  },
 });
 </script>
 
@@ -52,7 +131,7 @@ button {
 
 #button-start {
   margin-right: 30px;
-  background-color: #5CCC87;
+  background-color: #5ccc87;
 }
 
 #button-stop {
@@ -79,5 +158,4 @@ button {
   font-size: 80px;
   font-weight: bold;
 }
-
 </style>

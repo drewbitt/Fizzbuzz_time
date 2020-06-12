@@ -1,11 +1,12 @@
 <template>
   <div class="timer">
-    <router-link :to="{ name: 'home', params: { hasTime: hasTime }}">
+    <!-- <router-link :to="{ name: 'home', params: { hasTime: hasTime }}"> -->
+    <router-link :to="{ name: 'home' }">
       <button class="top-left back-button" id="back-button">
         &lt; Set Times
       </button>
     </router-link>
-    <TimerItem v-bind:seconds=counter />
+    <TimerItem :fizz="fizz" :buzz="buzz" />
   </div>
 </template>
 
@@ -16,8 +17,8 @@ import router from "..";
 import { useIntervalFn } from "@vueuse/core";
 
 interface Props {
-  fizz: String;
-  buzz: String;
+  fizz?: String;
+  buzz?: String;
 }
 
 export default defineComponent({
@@ -25,36 +26,23 @@ export default defineComponent({
     TimerItem,
   },
   props: {
-    fizz: {
-      type: String,
-      required: true,
-    },
-    buzz: {
-      type: String,
-      required: true,
-    },
+    fizz: String,
+    buzz: String,
   },
   setup(props: Props, context) {
     // Redirect without fizz or buzz
-    if (!(props.fizz && props.buzz)) {
+    const { fizz, buzz } = props;
+
+    if (!(fizz && buzz)) {
       router.push({ path: "/" });
     }
 
-    const counter = ref(0);
-
-    const { start, stop } = useIntervalFn(() => {
-      counter.value++;
-    }, 1000);
-    stop();
-
-    const hasTimee = computed(() => counter.value > 0);
-
     return {
-      counter
+      fizz,
+      buzz,
     };
   },
 });
-
 </script>
 
 <style scoped>

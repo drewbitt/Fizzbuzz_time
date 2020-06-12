@@ -4,15 +4,21 @@
       Please enter a fizz and buzz time in seconds.
       <strong>Values should be 2 to 10, inclusive.</strong>
     </p>
-    <FizzBuzzOptions v-bind:hasTime=hasTime />
-    <router-link :to="{ name: 'timer', params: { fizz: 2, buzz: 3 } }">
+    <FizzBuzzOptions
+      :hasTime="hasTime"
+      @set:fizz="fizz = $event"
+      @set:buzz="buzz = $event"
+    />
+    <router-link
+      :to="{ name: 'timer', params: { fizz: `${fizz}`, buzz: `${buzz}` } }"
+    >
       <button>Go to timer ></button>
     </router-link>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import FizzBuzzOptions from "../../components/FizzBuzzOptions.vue";
 
 interface Props {
@@ -20,18 +26,25 @@ interface Props {
 }
 
 export default defineComponent({
-   props: {
+  props: {
     hasTime: {
       type: Boolean,
-      value: false
-    }
+      value: false,
+    },
   },
   components: { FizzBuzzOptions },
   setup(props: Props) {
-    const hasTime = props.hasTime;
+    const { hasTime } = props;
+
+    // Create fizz and buzz. Values will be overridden when listening to event
+    let fizz;
+    let buzz;
+
     return {
-      hasTime
-    }
+      hasTime,
+      fizz,
+      buzz,
+    };
   },
 });
 </script>
