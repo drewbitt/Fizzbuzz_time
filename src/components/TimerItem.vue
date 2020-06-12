@@ -15,7 +15,19 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-export default defineComponent({});
+interface Props {
+  seconds: Number;
+}
+
+export default defineComponent({
+  props: {
+    seconds: {
+      type: Number,
+      default: 0
+    }
+  },
+  setup(props: Props) {}
+});
 </script>
 
 <style scoped>

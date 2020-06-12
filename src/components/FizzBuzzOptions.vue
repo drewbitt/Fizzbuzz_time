@@ -1,16 +1,33 @@
 <template>
   <div class="fizz-buzz-options-form">
     <label for="fizz">Fizz:</label>
-    <input id="fizz" name="fizz" type="text" />
+    <input id="fizz" name="fizz" type="text" v-bind:disabled=hasTime />
     <label for="buzz">Buzz</label>
-    <input id="buzz" name="buzz" type="text" />
+    <input id="buzz" name="buzz" type="text" v-bind:disabled=hasTime />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 
-export default defineComponent({});
+interface Props {
+  hasTime?: Boolean;
+}
+
+export default defineComponent({
+  props: {
+    hasTime: {
+      type: Boolean,
+      value: false
+    }
+  },
+  setup(props: Props) {
+    const hasTime = props.hasTime;
+    return {
+      hasTime
+    }
+  },
+});
 </script>
 
 <style scoped>
