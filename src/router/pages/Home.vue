@@ -1,6 +1,6 @@
 <template>
   <div class="fizz-buzz-options">
-    <p class="instructions">
+    <p class="big-label">
       Please enter a fizz and buzz time in seconds.
       <strong>Values should be 2 to 10, inclusive.</strong>
     </p>
@@ -25,9 +25,6 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.instructions {
-  font-size: 30px;
 }
 button {
   margin-top: 50px;

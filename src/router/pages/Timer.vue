@@ -1,7 +1,9 @@
 <template>
-  <div class="timer-item">
+  <div class="timer">
     <router-link :to="{ path: '/' }">
-      <button class="back-button">&lt; Set Times</button>
+      <button class="top-left back-button" id="back-button">
+        &lt; Set Times
+      </button>
     </router-link>
     <TimerItem />
   </div>
@@ -19,7 +21,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.timer-item {
+.timer {
   display: flex;
   flex-direction: column;
 }
@@ -34,5 +36,12 @@ export default defineComponent({
   font-weight: bold;
   cursor: pointer;
   border-radius: 5px;
+}
+
+.top-left {
+  align-self: flex-start;
+  left: 20;
+  top: 0;
+  position: absolute;
 }
 </style>
